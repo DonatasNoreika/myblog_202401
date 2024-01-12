@@ -12,12 +12,16 @@
             <a>Komentarų: {{ post.num_comments }}</a>
         </div>
         <hr>
+        {% if post.comments.all %}
         <h4>Komentarai:</h4>
         {% for comment in post.comments.all %}
         <small class="text-muted">{{ comment.author }}, {{ comment.date|date:"Y-m-d, f" }}</small>
         <p>{{ comment.content }}</p>
         <p></p>
         {% endfor %}
+        {% else %}
+        <p>Nėra komentarų</p>
+        {% endif %}
     </div>
 </article>
 {% endblock %}
