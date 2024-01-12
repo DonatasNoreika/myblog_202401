@@ -9,9 +9,15 @@ class Post(models.Model):
     date = models.DateTimeField(verbose_name="Data", auto_now_add=True)
     content = models.TextField(verbose_name="Tekstas", max_length=5000)
 
+    class Meta:
+        ordering = ['-date']
+
+    def num_comments(self):
+        return self.comments.all().count()
+
 
 class Comment(models.Model):
-    post = models.ForeignKey(to="Post", verbose_name="Įrašas", on_delete=models.CASCADE)
+    post = models.ForeignKey(to="Post", verbose_name="Įrašas", on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(to=User, verbose_name="Autorius", on_delete=models.SET_NULL, null=True)
     date = models.DateTimeField(verbose_name="Data", auto_now_add=True)
     content = models.TextField(verbose_name="Tekstas", max_length=1000)
