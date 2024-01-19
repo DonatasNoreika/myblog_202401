@@ -38,3 +38,11 @@ class MyPostListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
 
+
+class MyCommentListView(LoginRequiredMixin, generic.ListView):
+    model = Comment
+    template_name = "mycomments.html"
+    context_object_name = "comments"
+
+    def get_queryset(self):
+        return Comment.objects.filter(author=self.request.user)

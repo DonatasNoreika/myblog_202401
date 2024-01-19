@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block "title" %}Mano komentarai{% endblock %}
+
+{% block "content" %}
+    <div class="media-body">
+        {% if comments %}
+        <h4>Mano komentarai:</h4>
+        {% for comment in comments %}
+        <a href="{% url 'post' comment.post.pk %}"><small class="text-muted">Įrašas: {{ comment.post.title }}</small><br/></a>
+        <small class="text-muted">{{ comment.author }}, {{ comment.date|date:"Y-m-d, f" }}</small>
+        <p>{{ comment.content }}</p>
+        <p></p>
+        {% endfor %}
+        {% else %}
+        <p>Nėra komentarų</p>
+        {% endif %}
+    </div>
+{% endblock %}

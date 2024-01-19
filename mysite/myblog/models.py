@@ -26,3 +26,6 @@ class Comment(models.Model):
     author = models.ForeignKey(to=User, verbose_name="Autorius", on_delete=models.SET_NULL, null=True)
     date = models.DateTimeField(verbose_name="Data", auto_now_add=True)
     content = models.TextField(verbose_name="Tekstas", max_length=1000)
+
+    class Meta:
+        ordering = ['-date']
