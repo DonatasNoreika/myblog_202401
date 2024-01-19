@@ -12,7 +12,7 @@
             <a class="mr-2">{{ post.author }}</a>
             <small class="text-muted">{{ post.date|date:"Y-m-d, f" }}</small>
             <h2><a class="article-title">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
+            <p class="article-content">{{ post.content|safe }}</p>
             <a>Komentarų: {{ post.num_comments }}</a>
         </div>
         <hr>

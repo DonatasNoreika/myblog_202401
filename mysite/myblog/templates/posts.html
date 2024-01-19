@@ -10,7 +10,7 @@
             <a class="mr-2">{{ post.author }}</a>
             <small class="text-muted">{{ post.date|date:"Y-m-d, f" }}</small>
             <h2><a class="article-title">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content|truncatewords:"30" }}</p>
+            <p class="article-content">{{ post.content|truncatewords:"30"|safe }}</p>
             <p class="card-text"><a href="{% url 'post' post.pk %}">Skaityti daugiau</a></p>
             <a>Komentarų: {{ post.num_comments }}</a>
         </div>
