@@ -16,6 +16,11 @@ class Post(models.Model):
         return self.comments.all().count()
 
 
+class PostPhoto(models.Model):
+    post = models.ForeignKey(to="Post", on_delete=models.SET_NULL, null=True, blank=True, related_name="photos")
+    image = models.ImageField(verbose_name="Nuotrauka", upload_to="post_photos")
+
+
 class Comment(models.Model):
     post = models.ForeignKey(to="Post", verbose_name="Įrašas", on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(to=User, verbose_name="Autorius", on_delete=models.SET_NULL, null=True)

@@ -2,6 +2,10 @@
 
 {% block "title" %}Įrašas{% endblock %}
 {% block "content" %}
+
+
+{% load static %}
+
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
@@ -24,4 +28,15 @@
         {% endif %}
     </div>
 </article>
+{% if post.photos.all %}
+<div class="row">
+    {% for photo in post.photos.all %}
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card mb-4 shadow-sm">
+            <img src="{{ photo.image.url }}" class="card-img-top" alt="...">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 {% endblock %}
