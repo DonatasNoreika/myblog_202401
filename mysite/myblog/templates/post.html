@@ -16,6 +16,18 @@
             <a>Komentarų: {{ post.num_comments }}</a>
         </div>
         <hr>
+        {% if user.is_authenticated %}
+        <div class="fieldWrapper">
+            <hr>
+            <br/>
+            <h4>Palikite atsiliepimą:</h4>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.content }}</br>
+                <input type="submit" value="Išsaugoti">
+            </form>
+        </div>
+        {% endif %}
         {% if post.comments.all %}
         <h4>Komentarai:</h4>
         {% for comment in post.comments.all %}
