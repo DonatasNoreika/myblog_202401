@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Post, Comment
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -27,3 +28,13 @@ def search(request):
         "query": query,
     }
     return render(request, template_name="search.html", context=context)
+
+
+class MyPostListView(LoginRequiredMixin, generic.ListView):
+    model = Post
+    template_name = "myposts.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        return Post.objects.filter(author=self.request.user)
+
