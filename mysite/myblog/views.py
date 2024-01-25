@@ -152,3 +152,10 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = Post
+    success_url = "/myposts/"
+
+    def test_func(self):
+        return self.get_object().author == self.request.user
