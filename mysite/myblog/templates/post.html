@@ -14,6 +14,12 @@
             <small class="text-muted">{{ post.date|date:"Y-m-d, f" }}</small>
             <h2><a class="article-title">{{ post.title }}</a></h2>
             <p class="article-content">{{ post.content|safe }}</p>
+            {% if post.author == user %}
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1"
+                   href="{% url 'post_update' post.pk %}">Redaguoti</a>
+            </div>
+            {% endif %}
             <a>Komentarų: {{ post.num_comments }}</a>
         </div>
         <hr>

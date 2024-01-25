@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.views import generic
 from .models import Post, Comment
 from django.db.models import Q
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.forms import User
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
@@ -131,6 +131,23 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "post_form.html"
     fields = ['title', 'content']
     success_url = "/myposts/"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = Post
+    template_name = "post_form.html"
+    fields = ['title', 'content']
+    # success_url = "/myposts/"
+
+    def get_success_url(self):
+        return reverse("post", kwargs={"pk": self.object.id})
+
+    def test_func(self):
+        return self.get_object().author == self.request.user
 
     def form_valid(self, form):
         form.instance.author = self.request.user
