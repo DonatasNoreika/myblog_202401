@@ -3,6 +3,14 @@ from django.contrib.auth.forms import User
 from tinymce.models import HTMLField
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    photo = models.ImageField(default="profile_pics/default.png", upload_to="profile_pics")
+
+    def __str__(self):
+        return f"{self.user.username} profilis"
+
+
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(verbose_name="Pavadinimas", max_length=50)
