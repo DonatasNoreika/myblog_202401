@@ -12,7 +12,7 @@
             referrerpolicy="origin"></script>
 </head>
 <body>
-
+{% load i18n %}
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
     <div class="container">
@@ -25,7 +25,7 @@
                       d="M9.854 2.56a.5.5 0 0 0-.708 0L5.854 5.855a.5.5 0 0 1-.708-.708L8.44 1.854a1.5 1.5 0 0 1 2.122 0l.293.292a.5.5 0 0 1-.707.708l-.293-.293z"/>
                 <path d="M13.293 1.207a1 1 0 0 1 1.414 0l.03.03a1 1 0 0 1 .03 1.383L13.5 4 12 2.5l1.293-1.293z"/>
             </svg>
-            Mano tinklaraštis</a>
+            {% trans "My Blog" %}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'posts' %}">Įrašai</a>
+                    <a class="nav-link" href="{% url 'posts' %}">{% trans "Posts" %}</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">
@@ -44,22 +44,22 @@
                               clip-rule="evenodd"/>
                     </svg>
                     {{ user.get_username }}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'myposts' %}">Mano įrašai</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'mycomments' %}">Mano komentarai</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'myposts' %}">{% trans "My Posts" %}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'mycomments' %}">{% trans "My Comments" %}</a></li>
                 <li class="nav-item">
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button class="nav-link active" type="submit">Atsijungti</button>
+                        <button class="nav-link active" type="submit">{% trans "Logout" %}</button>
                     </form>
                 </li>
                 {% else %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'login'%}">Prisijungti</a>
+                <li class="nav-item"><a class="nav-link" href="{% url 'login'%}">{% trans "Login" %}</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'register'%}">Registruotis</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'register'%}">{% trans "Register" %}</a></li>
                 {% endif %}
                 <li>
                     <form action="{% url 'search' %}" method="get" class="form-inline my-2 my-md-0">
-                        <input name="query" class="form-control" type="text" placeholder="Paieška">
+                        <input name="query" class="form-control" type="text" placeholder="{% blocktrans %}Search{% endblocktrans %}">
                     </form>
                 </li>
             </ul>
