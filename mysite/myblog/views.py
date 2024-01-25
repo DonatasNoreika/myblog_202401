@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.views.generic.edit import FormMixin
 from .forms import CommentForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import gettext as _
 
 
 @login_required
@@ -19,7 +20,7 @@ def profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f"Profilis atnaujintas")
+            messages.info(request, _("Profile updated"))
             return redirect('profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -55,6 +56,7 @@ class MyCommentListView(LoginRequiredMixin, generic.ListView):
         return Comment.objects.filter(author=self.request.user)
 
 
+
 @csrf_protect
 def register(request):
     if request.method == "POST":
@@ -67,20 +69,18 @@ def register(request):
         if password == password2:
             # tikriname, ar neužimtas username
             if User.objects.filter(username=username).exists():
-                messages.error(request, f'Vartotojo vardas {username} užimtas!')
+                messages.error(request, _('Username %s already exists!') % username)
                 return redirect('register')
             else:
                 # tikriname, ar nėra tokio pat email
                 if User.objects.filter(email=email).exists():
-                    messages.error(request, f'Vartotojas su el. paštu {email} jau užregistruotas!')
+                    messages.error(request, _('Email %s already exists!') % email)
                     return redirect('register')
                 else:
                     # jeigu viskas tvarkoje, sukuriame naują vartotoją
                     User.objects.create_user(username=username, email=email, password=password)
-                    messages.info(request, f'Vartotojas {username} užregistruotas!')
-                    return redirect('login')
         else:
-            messages.error(request, 'Slaptažodžiai nesutampa!')
+            messages.error(request, _('Passwords do not match!'))
             return redirect('register')
     return render(request, 'registration/register.html')
 
