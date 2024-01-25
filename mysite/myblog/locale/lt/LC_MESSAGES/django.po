@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 10:58+0200\n"
-"PO-Revision-Date: 2024-01-25 10:59+0200\n"
+"POT-Creation-Date: 2024-01-25 11:14+0200\n"
+"PO-Revision-Date: 2024-01-25 11:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -50,7 +50,7 @@ msgstr "Tekstas"
 msgid "Post"
 msgstr "Įrašas"
 
-#: .\models.py:33 .\templates\base.html:36
+#: .\models.py:33 .\templates\base.html:36 .\templates\posts.html:3
 msgid "Posts"
 msgstr "Įrašai"
 
@@ -101,6 +101,14 @@ msgstr "Registruotis"
 msgid "Search"
 msgstr "Paieška"
 
+#: .\templates\comment_form.html:3 .\templates\comment_form.html:10
+msgid "Comment Edit"
+msgstr "Komentaro redagavimas"
+
+#: .\templates\comment_form.html:13 .\templates\post_form.html:13
+msgid "Save"
+msgstr "Išsaugoti"
+
 #: .\templates\mycomments.html:8
 msgid "My Comments:"
 msgstr "Mano komentarai:"
@@ -137,6 +145,10 @@ msgstr "Palikite komentarą:"
 #: .\templates\post.html:41
 msgid "Comments:"
 msgstr "Komentarai:"
+
+#: .\templates\post_form.html:3 .\templates\post_form.html:10
+msgid "Post Edit"
+msgstr "Įrašo redagavimas"
 
 #: .\templates\posts.html:25
 msgid "First"
@@ -226,6 +238,19 @@ msgstr "Pakartoti slaptažodį"
 #: .\templates\registration\register.html:32
 msgid "If you have registered before,"
 msgstr "Jeigu užsiregistravote anksčiau,"
+
+#: .\templates\search.html:3
+msgid "Search results"
+msgstr "Paieškos rezultatai"
+
+#: .\templates\search.html:5
+#, python-format
+msgid "Search results for \"%(query)s\":"
+msgstr "Paieškos pagal \"%(query)s\" rezultatai:"
+
+#: .\templates\search.html:16
+msgid "Oops. We didn't find anything :("
+msgstr "Oops. Nieko neradome :("
 
 #: .\views.py:23
 msgid "Profile updated"

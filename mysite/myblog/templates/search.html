@@ -1,7 +1,8 @@
 {% extends "base.html" %}
-{% block "title" %}Paieškos rezultatai{% endblock %}
+{% load i18n %}
+{% block "title" %}{% trans "Search results" %}{% endblock %}
 {% block "content" %}
-  <h1>Paieškos pagal "{{ query }}" rezultatai:</h1>
+  <h1>{% blocktrans %}Search results for "{{ query }}":{% endblocktrans %}</h1>
   </br>
   {% if posts %}
   <ul>
@@ -12,7 +13,7 @@
     {% endfor %}
   </ul>
   {% else %}
-    <p>Oops. Nieko neradome :(</p>
+    <p>{% trans "Oops. We didn't find anything :(" %}</p>
   {% endif %}
 
   {% endblock %}
