@@ -9,7 +9,8 @@ from .views import (PostListView,
                     PostCreateView,
                     PostUpdateView,
                     PostDeleteView,
-                    CommentUpdateView)
+                    CommentUpdateView,
+                    CommentDeleteView)
 
 urlpatterns = [
     path("", PostListView.as_view(), name="posts"),
@@ -23,4 +24,5 @@ urlpatterns = [
     path("posts/<int:pk>/update", PostUpdateView.as_view(), name="post_update"),
     path("post/<int:pk>/delete", PostDeleteView.as_view(), name='post_delete'),
     path("post/<int:post_pk>/comments/<int:pk>/update", CommentUpdateView.as_view(), name="comment_update"),
+    path("post/<int:post_pk>/comments/<int:pk>/delete", CommentDeleteView.as_view(), name="comment_delete"),
 ]

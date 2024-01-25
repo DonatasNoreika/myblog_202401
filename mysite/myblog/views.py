@@ -164,7 +164,7 @@ class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateV
     model = Comment
     template_name = "comment_form.html"
     fields = ['content']
-    success_url = "/"
+    # success_url = "/"
 
     def get_success_url(self):
         return reverse("post", kwargs={"pk": self.kwargs['post_pk']})
@@ -175,3 +175,13 @@ class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateV
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = Comment
+    success_url = "/"
+
+    def get_success_url(self):
+        return reverse("post", kwargs={"pk": self.kwargs['post_pk']})
+
+    def test_func(self):
+        return self.get_object().author == self.request.user
