@@ -10,6 +10,7 @@ from django.views.generic.edit import FormMixin
 from .forms import CommentForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 def profile(request):
     if request.method == "POST":
@@ -32,36 +33,6 @@ def profile(request):
 
 
 # Create your views here.
-class PostListView(generic.ListView):
-    model = Post
-    template_name = "posts.html"
-    context_object_name = "posts"
-    paginate_by = 3
-
-
-class PostDetailView(FormMixin, generic.DetailView):
-    model = Post
-    template_name = "post.html"
-    context_object_name = 'post'
-    form_class = CommentForm
-
-    def get_success_url(self):
-        return reverse("post", kwargs={"pk": self.object.pk})
-
-    # standartinis post metodo perrašymas, naudojant FormMixin, galite kopijuoti tiesiai į savo projektą.
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-    def form_valid(self, form):
-        form.instance.post = self.object
-        form.instance.author = self.request.user
-        form.save()
-        return super().form_valid(form)
 
 
 def search(request):
@@ -73,15 +44,6 @@ def search(request):
         "query": query,
     }
     return render(request, template_name="search.html", context=context)
-
-
-class MyPostListView(LoginRequiredMixin, generic.ListView):
-    model = Post
-    template_name = "myposts.html"
-    context_object_name = "posts"
-
-    def get_queryset(self):
-        return Post.objects.filter(author=self.request.user)
 
 
 class MyCommentListView(LoginRequiredMixin, generic.ListView):
@@ -121,3 +83,55 @@ def register(request):
             messages.error(request, 'Slaptažodžiai nesutampa!')
             return redirect('register')
     return render(request, 'registration/register.html')
+
+
+class MyPostListView(LoginRequiredMixin, generic.ListView):
+    model = Post
+    template_name = "myposts.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        return Post.objects.filter(author=self.request.user)
+
+
+class PostListView(generic.ListView):
+    model = Post
+    template_name = "posts.html"
+    context_object_name = "posts"
+    paginate_by = 3
+
+
+class PostDetailView(FormMixin, generic.DetailView):
+    model = Post
+    template_name = "post.html"
+    context_object_name = 'post'
+    form_class = CommentForm
+
+    def get_success_url(self):
+        return reverse("post", kwargs={"pk": self.object.pk})
+
+    # standartinis post metodo perrašymas, naudojant FormMixin, galite kopijuoti tiesiai į savo projektą.
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        form.instance.post = self.object
+        form.instance.author = self.request.user
+        form.save()
+        return super().form_valid(form)
+
+
+class PostCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Post
+    template_name = "post_form.html"
+    fields = ['title', 'content']
+    success_url = "/myposts/"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
