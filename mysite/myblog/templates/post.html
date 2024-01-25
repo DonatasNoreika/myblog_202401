@@ -32,6 +32,7 @@
         {% if post.comments.all %}
         <h4>Komentarai:</h4>
         {% for comment in post.comments.all %}
+        <img class="rounded-circle account-img" style="width: 30px" src="{{ comment.author.profile.photo.url }}">
         <small class="text-muted">{{ comment.author }}, {{ comment.date|date:"Y-m-d, f" }}</small>
         <p>{{ comment.content|safe }}</p>
         <p></p>
