@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 10:37+0200\n"
-"PO-Revision-Date: 2024-01-25 10:38+0200\n"
+"POT-Creation-Date: 2024-01-25 10:42+0200\n"
+"PO-Revision-Date: 2024-01-25 10:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -65,7 +65,8 @@ msgstr "Nuotraukos"
 msgid "Comment"
 msgstr "Komentaras"
 
-#: .\models.py:57 .\templates\post.html:26 .\templates\posts.html:16
+#: .\models.py:57 .\templates\myposts.html:19 .\templates\post.html:26
+#: .\templates\posts.html:16
 msgid "Comments"
 msgstr "Komentarai"
 
@@ -73,7 +74,7 @@ msgstr "Komentarai"
 msgid "My Blog"
 msgstr "Mano Tinklaraštis"
 
-#: .\templates\base.html:47
+#: .\templates\base.html:47 .\templates\myposts.html:3
 msgid "My Posts"
 msgstr "Mano įrašai"
 
@@ -97,6 +98,22 @@ msgstr "Registruotis"
 msgid "Search"
 msgstr "Paieška"
 
+#: .\templates\myposts.html:7
+msgid "New Post"
+msgstr "Naujas įrašas"
+
+#: .\templates\myposts.html:8
+msgid "My Posts:"
+msgstr "Mano įrašai:"
+
+#: .\templates\myposts.html:18 .\templates\posts.html:15
+msgid "Read more"
+msgstr "Skaityti daugiau"
+
+#: .\templates\myposts.html:26 .\templates\post.html:57
+msgid "No Comments"
+msgstr "Nėra komentarų"
+
 #: .\templates\post.html:19 .\templates\post.html:48
 msgid "Edit"
 msgstr "Redaguoti"
@@ -112,14 +129,6 @@ msgstr "Palikite komentarą:"
 #: .\templates\post.html:41
 msgid "Comments:"
 msgstr "Komentarai:"
-
-#: .\templates\post.html:57
-msgid "No Comments"
-msgstr "Nėra komentarų"
-
-#: .\templates\posts.html:15
-msgid "Read more"
-msgstr "Skaityti daugiau"
 
 #: .\templates\posts.html:25
 msgid "First"
@@ -174,3 +183,8 @@ msgstr "El. pašto adresas  %s užimtas!"
 #: .\views.py:83
 msgid "Passwords do not match!"
 msgstr "Slaptažodžiai nesutampa"
+
+#, fuzzy
+#~| msgid "Read more"
+#~ msgid "Read More"
+#~ msgstr "Skaityti daugiau"
