@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 10:48+0200\n"
-"PO-Revision-Date: 2024-01-25 10:49+0200\n"
+"POT-Creation-Date: 2024-01-25 10:58+0200\n"
+"PO-Revision-Date: 2024-01-25 10:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -89,10 +89,11 @@ msgstr "Atsijungti"
 
 #: .\templates\base.html:57 .\templates\registration\login.html:3
 #: .\templates\registration\login.html:19
+#: .\templates\registration\register.html:32
 msgid "Login"
 msgstr "Prisijungti"
 
-#: .\templates\base.html:59
+#: .\templates\base.html:59 .\templates\registration\register.html:30
 msgid "Register"
 msgstr "Registruotis"
 
@@ -159,11 +160,11 @@ msgstr "Vartotojo profilis"
 
 #: .\templates\profile.html:10
 msgid "First Name:"
-msgstr "Vardas"
+msgstr "Vardas:"
 
 #: .\templates\profile.html:11
 msgid "Last Name:"
-msgstr "Pavardė"
+msgstr "Pavardė:"
 
 #: .\templates\profile.html:16
 msgid "Profile Info"
@@ -185,6 +186,47 @@ msgstr "Slaptažodis:"
 msgid "Forgotten Password?"
 msgstr "Pamiršote slaptažodį?"
 
+#: .\templates\registration\register.html:3
+#: .\templates\registration\register.html:8
+msgid "Registration"
+msgstr "Registracija"
+
+#: .\templates\registration\register.html:12
+msgid "Username"
+msgstr "Vartotojo vardas"
+
+#: .\templates\registration\register.html:14
+msgid "Up to 150 characters."
+msgstr "Iki 150 simbolių."
+
+#: .\templates\registration\register.html:17
+msgid "Email"
+msgstr "El. pašto adresas"
+
+#: .\templates\registration\register.html:19
+msgid ""
+"We will not share with anyone, we will not send any spam. Required to send a "
+"new password."
+msgstr ""
+"Nesidalinsime su niekuo, nesiųsime jokio šlamšto. Reikalingas naujam "
+"slaptažodžiui išsiųsti."
+
+#: .\templates\registration\register.html:22
+msgid "Password"
+msgstr "Slaptažodis"
+
+#: .\templates\registration\register.html:24
+msgid "At least 8 characters. Can't be numbers only."
+msgstr "Ne mažiau, kaip 8 simboliai. Negali būti vien tik skaičiai."
+
+#: .\templates\registration\register.html:27
+msgid "Confirm Password"
+msgstr "Pakartoti slaptažodį"
+
+#: .\templates\registration\register.html:32
+msgid "If you have registered before,"
+msgstr "Jeigu užsiregistravote anksčiau,"
+
 #: .\views.py:23
 msgid "Profile updated"
 msgstr "Profilis atnaujintas"
@@ -201,7 +243,7 @@ msgstr "El. pašto adresas  %s užimtas!"
 
 #: .\views.py:83
 msgid "Passwords do not match!"
-msgstr "Slaptažodžiai nesutampa"
+msgstr "Slaptažodžiai nesutampa!"
 
 #, fuzzy
 #~| msgid "Read more"
