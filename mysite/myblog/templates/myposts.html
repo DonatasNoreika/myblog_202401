@@ -3,8 +3,8 @@
 {% block "title" %}{% trans "My Posts" %}{% endblock %}
 
 {% block "content" %}
-{% if posts %}
 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post_new' %}">{% trans "New Post" %}</a>
+{% if posts %}
 <h1>{% trans "My Posts:" %}</h1>
 {% for post in posts %}
 <article class="media content-section">
